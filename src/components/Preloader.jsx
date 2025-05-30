@@ -22,7 +22,7 @@ const Preloader = ({ onFinish }) => {
         fadeOut ? 'opacity-2 pointer-events-none' : 'opacity-100'
       }`}
     >
-      <Spline scene="add new preload effect" />
+      <Spline scene="loading_gif.spline" />
     </div>
   );
 };
