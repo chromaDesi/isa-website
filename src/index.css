@@ -14,10 +14,9 @@ hsl is a color, var defines variable
   --color-primary: hsl(var(--primary));
   --color-secondary: hsl(var(--secondary));
   --color-tertiary: hsl(var(--tertiary));
-  --color-quaternary: hsl(var(--quaternary));
+  --color-quad: hsl(var(--quad));
 
   --color-card: hsl(var(--card));
-
 
 
 }
@@ -31,9 +30,13 @@ hsl is a color, var defines variable
         --primary: 0 0% 100%;
         --secondary: 20 80% 50%;
         --tertiary: 110 90% 30%;
-        --quaternary: 200 100% 50%;
+        --quad: 200 100% 50%;
 
         --card: 0 0% 20%;
+    }
+
+    body{
+        @apply bg-background text-primary relative font-sans h-screen overflow-x-hidden
     }
 }
 
@@ -60,4 +63,9 @@ hsl is a color, var defines variable
     @media (width >= 1400px){
         max-width: 1440px;
     }
+}
+
+@utility text-glow{
+    @apply relative;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
 }
