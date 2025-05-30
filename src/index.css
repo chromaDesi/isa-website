@@ -2,8 +2,17 @@
 
 
 
-
-
+html{
+    scroll-behavior: smooth;
+    scrollbar-color: hsl(var(--background));
+}
+body{
+    scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
 /*define a color that is a class name
 hsl is a color, var defines variable
 --classname : hsl(var(--varname));*/
@@ -68,4 +77,52 @@ hsl is a color, var defines variable
 @utility text-glow{
     @apply relative;
     text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+
+
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-70%);
+  }
+}
+
+
+@keyframes scroll-vertical-down {
+  0% {
+    transform: translateY(-70%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.banner-wrapper-vertical {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.images-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.image-vertical img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 }

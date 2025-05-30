@@ -11,6 +11,16 @@ import Contact from './Contact'; // adjust path if needed
 
 // nav items
 const items = [
+    { name: 'Home', href: '#Hero' },
+    { name: 'About', href: '/About' },
+    { name: 'Contact', href: 'contact' },
+    { name: 'Links', href: 'https://linktr.ee/isa_gmu?fbclid=PAZXh0bgNhZW0CMTEAAaeMawhJGZ-KKZ_YQftQk8gdRgHeffn7IEh8mjFJy_-l-R6c1em8V-VpY5biwA_aem_14wsImdskkSdCX1XMlgH3w'},
+    { name: <Mail />, href: "mailto:gmu.isa.1@gmail.com"},
+    {name: <Instagram />, href: "https://www.instagram.com/gmu_isa/"},
+    {name: <MapPin />, href: "https://maps.app.goo.gl/RxbM7p8QFfZCh2ZQA"},
+]
+
+const items2 = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '#About' },
     { name: 'Contact', href: 'contact' },
@@ -44,13 +54,15 @@ const Navbar = () => {
     <>
     <nav
       className={cn(
-        "fixed w-full z-50 transition-all duration-300",
-        isScrolled && !isMenuOpen
-          ? "py-3 bg-black/70 backdrop-blur-md shadow-md"
-          : "py-5 bg-transparent"
-      )}
+  "fixed w-full z-50 transition-all duration-300 items-center -translate-y-[4px]",
+  isScrolled && !isMenuOpen
+    ? "min-h-[60px] bg-black/70 backdrop-blur-lg shadow-md"
+    : "min-h-[76px] bg-transparent"
+)}
+
     >
-      <div className="container flex items-center justify-between">
+      
+      <div className="container flex items-center justify-between absolute top-6 z-50 -translate-y-[4px]">
         {/* Logo */}
         <motion.a
           initial={{ x: -100, opacity: 0 }}
@@ -65,18 +77,15 @@ const Navbar = () => {
           className="text-bold text-2xl items-center flex"
           href="#Hero"
         >
-          <span className="relative z-10 text-secondary text-glow">
-            GMU'S
-            <span className="text-primary text-glow"> INDIAN
-              <span className="text-quad text-glow"> STUDENTS
-                <span className="text-tertiary text-glow"> ASSOCIATION</span>
-              </span>
-            </span>
-          </span>
+          <h1 className="text-white text-2xl sm:text-4xl font-extrabold uppercase tracking-tight leading-none font-bebas whitespace-nowrap [text-shadow:_0_0_8px_rgba(255,255,255,0.8)]">
+            INDIAN STUDENT ASSOCIATION
+          </h1>
+        
+
         </motion.a>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden xl:flex space-x-8 top-3">
             {items.map((item, key) => (
               <motion.a
                 initial={{ opacity: 0, y: -20 }}
@@ -95,9 +104,9 @@ const Navbar = () => {
                     setShowContact(true);
                   }
                 }}
-                target={item.name !== "Contact" ? "_blank" : undefined}
+                target={item.name === "Links" ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors duration-300"
+                className="border border-white text-white rounded-full px-4 py-1.5 hover:bg-white/10 transition-colors duration-300 text-sm md:text-base"
               >
                 {item.name}
               </motion.a>
@@ -108,7 +117,7 @@ const Navbar = () => {
         {!isMenuOpen && (
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="md:hidden p-2 text-primary z-50 absolute right-4 top-4"
+            className="xl:hidden p-2 text-primary z-50 absolute right-2 top-0.3"
             aria-label="Open Menu"
           >
             <Menu size={28} />
@@ -120,7 +129,7 @@ const Navbar = () => {
       <div
         className={cn(
           "fixed inset-0 bg-background/95 backdrop-blur-md z-999 flex flex-col items-center justify-center",
-          "transition-all duration-300 md:hidden",
+          "transition-all duration-300 xl:hidden",
           isMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -137,7 +146,7 @@ const Navbar = () => {
 
         {/* Menu items */}
         <div className="flex flex-col space-y-8 text-xl mt-12 items-center">
-            {items.map((item, key) => (
+            {items2.map((item, key) => (
               <a
                 key={key}
                 href={item.href}
@@ -150,7 +159,7 @@ const Navbar = () => {
                 }}
                 target={item.name !== "Contact" ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="text-secondary hover:text-primary transition-colors duration-300"
+                className="text-secondary hover:text-primary transition-colors duration-300 font-semibold"
               >
                 {item.name}
               </a>
