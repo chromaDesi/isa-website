@@ -1,5 +1,5 @@
 import { images } from "./images";
-import Banner from "./banner";
+import Banner from "./Banner";
 
 const About = () => {
   return (
