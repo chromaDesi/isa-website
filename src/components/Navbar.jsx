@@ -1,31 +1,32 @@
 import { useState, useEffect } from "react";
 import { cn } from "../libs/utils";
-import { Menu, X, Instagram, Mail, MapPin, Send} from "lucide-react";
+import { Menu, X, Instagram, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-import Contact from './Contact'; // adjust path if needed
+import Contact from "./Contact";
 
-
-
-
-
-
-// nav items
+// Nav items
 const items = [
-    { name: 'Home', href: '#Hero' },
-    { name: 'About', href: '/About' },
-    { name: 'Contact', href: 'contact' },
-    { name: 'Links', href: 'https://linktr.ee/isa_gmu?fbclid=PAZXh0bgNhZW0CMTEAAaeMawhJGZ-KKZ_YQftQk8gdRgHeffn7IEh8mjFJy_-l-R6c1em8V-VpY5biwA_aem_14wsImdskkSdCX1XMlgH3w'},
-    { name: <Mail />, href: "mailto:gmu.isa.1@gmail.com"},
-    {name: <Instagram />, href: "https://www.instagram.com/gmu_isa/"},
-    {name: <MapPin />, href: "https://maps.app.goo.gl/RxbM7p8QFfZCh2ZQA"},
-]
+  { name: "Home", href: "#Hero" },
+  { name: "About", href: "/About" },
+  { name: "Contact", href: "contact" },
+  {
+    name: "Links",
+    href: "https://linktr.ee/isa_gmu?fbclid=PAZXh0bgNhZW0CMTEAAaeMawhJGZ-KKZ_YQftQk8gdRgHeffn7IEh8mjFJy_-l-R6c1em8V-VpY5biwA_aem_14wsImdskkSdCX1XMlgH3w",
+  },
+  { name: <Mail />, href: "mailto:gmu.isa.1@gmail.com" },
+  { name: <Instagram />, href: "https://www.instagram.com/gmu_isa/" },
+  { name: <MapPin />, href: "https://maps.app.goo.gl/RxbM7p8QFfZCh2ZQA" },
+];
 
-const items2 = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '#About' },
-    { name: 'Contact', href: 'contact' },
-    { name: 'Links', href: 'https://linktr.ee/isa_gmu?fbclid=PAZXh0bgNhZW0CMTEAAaeMawhJGZ-KKZ_YQftQk8gdRgHeffn7IEh8mjFJy_-l-R6c1em8V-VpY5biwA_aem_14wsImdskkSdCX1XMlgH3w'},
-]
+const mobileItems = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "#About" },
+  { name: "Contact", href: "contact" },
+  {
+    name: "Links",
+    href: "https://linktr.ee/isa_gmu?fbclid=PAZXh0bgNhZW0CMTEAAaeMawhJGZ-KKZ_YQftQk8gdRgHeffn7IEh8mjFJy_-l-R6c1em8V-VpY5biwA_aem_14wsImdskkSdCX1XMlgH3w",
+  },
+];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,8 +39,6 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Lock body scroll if menu is open
     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
 
     return () => {
@@ -48,55 +47,41 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
-  
-
   return (
     <>
-    <nav
-      className={cn(
-  "fixed w-full z-50 transition-all duration-300 items-center -translate-y-[4px]",
-  isScrolled && !isMenuOpen
-    ? "min-h-[60px] bg-black/70 backdrop-blur-lg shadow-md"
-    : "min-h-[76px] bg-transparent"
-)}
-
-    >
-      
-      <div className="container flex items-center justify-between absolute top-6 z-50 -translate-y-[4px]">
-        {/* Logo */}
-        <motion.a
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 25,
-            delay: 0.3,
-            duration: 1.2,
-          }}
-          className="text-bold text-2xl items-center flex"
-          href="#Hero"
-        >
-          <h1 className="text-white text-2xl sm:text-4xl font-extrabold uppercase tracking-tight leading-none font-bebas whitespace-nowrap [text-shadow:_0_0_8px_rgba(255,255,255,0.8)]">
+      <nav
+        className={cn(
+          "fixed top-0 w-full z-50 transition-all duration-300",
+          isScrolled && !isMenuOpen
+            ? "min-h-[60px] bg-black/70 backdrop-blur-lg shadow-md"
+            : "min-h-[76px] bg-transparent"
+        )}
+      >
+        <div className="container mx-auto px-4 flex items-center justify-between py-4">
+          {/* Logo */}
+          <motion.a
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 25,
+              delay: 0.3,
+            }}
+            href="#Hero"
+            className="text-2xl font-bold text-white font-bebas tracking-tight whitespace-nowrap [text-shadow:_0_0_8px_rgba(255,255,255,0.8)]"
+          >
             INDIAN STUDENT ASSOCIATION
-          </h1>
-        
+          </motion.a>
 
-        </motion.a>
-
-        {/* Desktop nav */}
-        <div className="hidden xl:flex space-x-8 top-3">
-            {items.map((item, key) => (
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex space-x-6">
+            {items.map((item, idx) => (
               <motion.a
+                key={idx}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20,
-                  delay: 0.7 + key * 0.2,
-                }}
-                key={key}
+                transition={{ delay: 0.5 + idx * 0.1 }}
                 href={item.href}
                 onClick={(e) => {
                   if (item.name === "Contact") {
@@ -104,7 +89,11 @@ const Navbar = () => {
                     setShowContact(true);
                   }
                 }}
-                target={item.name === "Links" ? "_blank" : undefined}
+                target={
+                  item.name === "Links" || typeof item.name !== "string"
+                    ? "_blank"
+                    : undefined
+                }
                 rel="noopener noreferrer"
                 className="border border-white text-white rounded-full px-4 py-1.5 hover:bg-white/10 transition-colors duration-300 text-sm md:text-base"
               >
@@ -113,42 +102,46 @@ const Navbar = () => {
             ))}
           </div>
 
-        {/* Hamburger menu */}
-        {!isMenuOpen && (
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            className="xl:hidden p-2 text-primary z-50 absolute right-2 top-0.3"
-            aria-label="Open Menu"
-          >
-            <Menu size={28} />
-          </button>
-        )}
-      </div>
+          {/* Mobile Menu Button */}
+          {!isMenuOpen && (
+            <button
+              onClick={() => setIsMenuOpen(true)}
+              className="lg:hidden p-2 text-white z-50"
+              aria-label="Open Menu"
+            >
+              <Menu size={28} />
+            </button>
+          )}
+        </div>
 
-      {/* Mobile menu overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 bg-background/95 backdrop-blur-md z-999 flex flex-col items-center justify-center",
-          "transition-all duration-300 xl:hidden",
-          isMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        )}
-      >
-        {/* Close button */}
-        <button
-          onClick={() => setIsMenuOpen(false)}
-          className="absolute top-4 right-4 text-foreground z-[1000]"
-          aria-label="Close Menu"
+        {/* Mobile Menu Overlay */}
+        <div
+          className={cn(
+            "fixed inset-0 bg-background/95 backdrop-blur-md z-[999] px-6 py-10 flex flex-col gap-6 items-center md:hidden transition-all duration-300",
+            isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          )}
         >
-          <X size={28} />
-        </button>
+          {/* Close Button */}
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="absolute top-4 right-4 text-white"
+            aria-label="Close Menu"
+          >
+            <X size={28} />
+          </button>
 
-        {/* Menu items */}
-        <div className="flex flex-col space-y-8 text-xl mt-12 items-center">
-            {items2.map((item, key) => (
+          {/* Optional Logo */}
+          <img
+            src="/isa_logo.svg"
+            alt="ISA Logo"
+            className="w-24 h-24 rounded-full mt-8"
+          />
+
+          {/* Mobile Menu Items */}
+          <div className="flex flex-col items-center gap-6 mt-6 text-lg">
+            {mobileItems.map((item, idx) => (
               <a
-                key={key}
+                key={idx}
                 href={item.href}
                 onClick={(e) => {
                   if (item.name === "Contact") {
@@ -159,28 +152,45 @@ const Navbar = () => {
                 }}
                 target={item.name !== "Contact" ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="text-secondary hover:text-primary transition-colors duration-300 font-semibold"
+                className="text-white hover:text-primary transition-colors font-semibold"
               >
                 {item.name}
               </a>
             ))}
-            <br />
           </div>
-            <nav className=" border-t py-8 pt-8 gap-4 flex">
-            <a href="mailto:gmu.isa.1@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">
+
+          {/* Social Icons */}
+          <div className="flex gap-6 mt-10 border-t pt-6">
+            <a
+              href="mailto:gmu.isa.1@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary text-white"
+            >
               <Mail />
             </a>
-            <a href="https://www.instagram.com/gmu_isa" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">
+            <a
+              href="https://www.instagram.com/gmu_isa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary text-white"
+            >
               <Instagram />
             </a>
-            <a href="https://maps.app.goo.gl/RxbM7p8QFfZCh2ZQA" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">
+            <a
+              href="https://maps.app.goo.gl/RxbM7p8QFfZCh2ZQA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary text-white"
+            >
               <MapPin />
             </a>
-            </nav>
-      </div>
-      
-    </nav>
-<Contact isOpen={showContact} onClose={() => setShowContact(false)} />
+          </div>
+        </div>
+      </nav>
+
+      {/* Contact Modal */}
+      <Contact isOpen={showContact} onClose={() => setShowContact(false)} />
     </>
   );
 };
