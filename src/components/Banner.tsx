@@ -1,3 +1,6 @@
+import { CSSProperties } from 'react';
+import OptimizedImage from './OptimizedImage';
+
 interface BannerProps {
   images: {
     src: string;
@@ -8,7 +11,7 @@ interface BannerProps {
 }
 
 export function ImageSection({ images, speed, direction }: BannerProps) {
-  const imagesStyle: React.CSSProperties = {
+  const imagesStyle: CSSProperties = {
     animation: `${direction} ${speed}ms linear infinite`,
   };
 
@@ -16,12 +19,13 @@ export function ImageSection({ images, speed, direction }: BannerProps) {
     <div className="images-vertical" style={imagesStyle}>
       {images.map(({ src, name }, index) => (
         <div key={index} className="image-vertical">
-          <img
-              src={src}
-              alt={name}
-              className="w-[350px] h-60 object-cover rounded-md shadow-md"
-            />
-
+          <OptimizedImage
+            src={src}
+            alt={name}
+            className="w-[350px] h-60 rounded-md shadow-md"
+            width={350}
+            quality={75}
+          />
         </div>
       ))}
     </div>
